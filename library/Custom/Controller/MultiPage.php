@@ -1,5 +1,6 @@
 <?php
 
+require_once(APPLICATION_PATH . DIRECTORY_SEPARATOR . 'forms' . DIRECTORY_SEPARATOR . 'Breadcrumbs.php');
 /**
  * A base controller class for multi page forms.
  *
@@ -16,7 +17,7 @@ class Custom_Controller_MultiPage extends Zend_Controller_Action {
 
     /**
      * Determines which sub-forms should not have CSRF-protection
-     * @var array 
+     * @var array
      */
     protected $_excludeCsrfSubForms = array();
 
@@ -41,7 +42,7 @@ class Custom_Controller_MultiPage extends Zend_Controller_Action {
      */
     protected function populateForm($form, $data) {
         /**
-         * populate with data -> be aware that only fields set in 
+         * populate with data -> be aware that only fields set in
          * this array will be populated!
          */
         return $form->populate($data);
@@ -134,7 +135,7 @@ class Custom_Controller_MultiPage extends Zend_Controller_Action {
     }
 
     /**
-     * Get a list of forms already stored in the session, i.e. those steps that 
+     * Get a list of forms already stored in the session, i.e. those steps that
      * have been verified.
      * @return array
      */
@@ -322,7 +323,7 @@ class Custom_Controller_MultiPage extends Zend_Controller_Action {
                         $vEl->isValid($postData[$subFormName][$k][$kEl], $postData[$subFormName][$k])) {
                     $validSubFormFields[$k][$kEl] = $vEl->getValue();
                 } else {
-                    //...    
+                    //...
                 }
             }
         }
@@ -428,9 +429,9 @@ class Custom_Controller_MultiPage extends Zend_Controller_Action {
     }
 
     /**
-     * The last sub-form is to verify the entire form -> display form data 
+     * The last sub-form is to verify the entire form -> display form data
      * submitted once more.
-     * This comes in handy if you want to users to present their data entered 
+     * This comes in handy if you want to users to present their data entered
      * in all sub forms once more to let them verify their input.
      * @param Zend_Form_SubForm $form
      * @return Zend_Form_SubForm
@@ -483,7 +484,7 @@ class Custom_Controller_MultiPage extends Zend_Controller_Action {
     }
 
     /**
-     * Display <form> to add private user account and POST to addAction to 
+     * Display <form> to add private user account and POST to addAction to
      * process data.
      */
     public function indexAction() {
@@ -561,7 +562,7 @@ class Custom_Controller_MultiPage extends Zend_Controller_Action {
             if ($nextSubFormToLoad != null) {
                 $form = $nextSubFormToLoad; // breadcrumb navigation
             } else {
-                $form = $this->getNextSubForm(); // next step 
+                $form = $this->getNextSubForm(); // next step
             }
 
             $formSessionData = $this->getSessionNamespaceData();
